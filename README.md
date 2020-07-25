@@ -1,6 +1,7 @@
 # Showcase for Semantic Canvas
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.5.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.11.
+Check out: https://samsongross.github.io/semantic-canvas-demo/ 
 
 ## Installation
 
