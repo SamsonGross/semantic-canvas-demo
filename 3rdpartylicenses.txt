@@ -89,6 +89,7 @@ THE SOFTWARE.
 MIT
 
 @semantic-canvas/semantic-canvas-core
+MIT
 Copyright (c) 2013-2017 ZURB, inc.
 
 MIT License
