@@ -47,11 +47,69 @@ imports: [
 ],
 ```
 
-## Example
+## 1. Example: Basic Canvas
 
 ```html
 <sem-semantic-canvas></sem-semantic-canvas>
 ```
+
+## 2. Example: Add custom shapes and elements
+
+First, you must define your custom shape to use it as the type for your custom element.
+Once defined, this shape can be used as the type of different elements.
+
+```
+// e.g. app.component.ts
+
+myCustomShape: ICanvasElementShape = {
+  name: 'MyCustomShape',                       // name of the shape
+  width: 200,                                  // default width of the shape (DEFAULT: 160)
+  height: 150,                                 // default height of the shape (DEFAULT: 100)
+  backgroundColor: '#eb5e34',                  // color of background (DEFAULT: #81DAF5)
+  borderRadius: 5,                             // radius of the border (DEFAULT: 0)
+  borderColor: 'gray',                         // color of the border (DEFAULT: black)
+  borderWidth: 6,                              // width of the border (DEFAULT: 1)
+};
+```
+
+Second, define your custom model package including all your elements (and relations).
+All defined elements can be used on the canvas.
+
+```
+// e.g. app.component.ts
+
+myCustomModelPackage: IModelPackage = {
+  title: 'myCustomElement',                    // title of the model package
+  description:                                 // description of the model package
+    'This is my first custom model package!',
+  inToolbar: true,                             // shown in toolbar by default
+  model: {
+    elements: [                                // list of custom elements
+      {
+        name: 'MyCustomElement',               // name of your custom element
+        type: 'MyCustomShape'                  // name of your custom shape (defined above)
+      }
+    ],
+    relations: []                              // list of custom relations
+  }
+};
+```
+
+Third, hand over the created forms and packages to the canvas
+
+```html
+<sem-semantic-canvas 
+  [elementShapes]=[myCustomShape]
+  [modelPackages]="[myCustomModelPackage]"
+>
+</sem-semantic-canvas>
+```
+
+## 3. Example: Use predefined shape libraries
+tbd
+
+## 4. Example: Use your own components as shapes on the canvas
+tbd
 
 ## Run
 
