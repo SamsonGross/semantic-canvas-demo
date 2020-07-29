@@ -127,7 +127,167 @@ Third, hand over the created forms and packages to the canvas
 </sem-semantic-canvas>
 ```
 
-## 3. Example: Use predefined shape libraries
+## 3.1. Example: Use your own components as shapes on the canvas
+Use CanvasFactories to bring your own components on the canvas
+
+First, create a new component using Angular CLI
+
+```
+ng g c Greetings
+```
+
+Second, design your component
+
+```html
+<!-- greetings.component.html -->
+
+<div>
+  <label>Who would you like to greet?</label>
+  <input type="text" [(ngModel)]="name" placeholder="Enter name..">
+  <button (click)="greet()">Greet</button>
+</div>
+```
+
+```css
+/* greetings.component.css / .scss */
+
+div {
+  display: inline-block;
+  width: 300px;
+  padding: 20px;
+  background-color: #f2f2f2;
+}
+
+input[type=text] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+button {
+  width: 100%;
+  background-color: #ee8d32;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #c54b12;
+}
+```
+
+```typescript
+// greetings.component.ts
+
+import { CanvasComponent } from '@semantic-canvas/semantic-canvas-core';
+
+@Component({
+  selector: 'app-greetings',
+  templateUrl: './greetings.component.html',
+  styleUrls: ['./greetings.component.scss']
+})
+export class GreetingsComponent extends CanvasComponent implements OnInit {
+  name: string = '';
+
+  constructor() {
+    super()
+  }
+
+  ngOnInit(): void { }
+
+  greet() {
+    alert('Hello ' + this.name + '!');
+  }
+}
+```
+
+Third, use CanvasFactory to create your custom elements by your component.
+
+```typescript
+// app.module.ts
+
+import { SemanticCanvasCoreModule } from '@semantic-canvas/semantic-canvas-core';
+import { FormsModule } from '@angular/forms';
+
+[...]
+
+imports: [
+  BrowserModule,
+  BrowserAnimationsModule,
+  FormsModule,                  // add this line
+  SemanticCanvasCoreModule      // add this line
+]
+```
+
+```typescript
+// app.component.ts
+
+import { GenericCanvasFactory } from '@semantic-canvas/semantic-canvas-core';
+import { ICanvasElementShape } from '@semantic-canvas/semantic-canvas-core/lib/canvas/domain/ICanvasElementShape';
+import { IModelPackage } from '@semantic-canvas/semantic-canvas-core/lib/library/domain/IModelPackage';
+import { ICanvasShapeFactory } from '@semantic-canvas/semantic-canvas-core/lib/canvas/domain/ICanvasShapeFactory';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
+})
+export class AppComponent {
+  title = 'semanticCanvasDemo';
+  myCustomShapes: ICanvasElementShape[] = [
+    {
+      name: 'GreetingsShape'
+    }
+  ];
+
+  myCustomModelPackage: IModelPackage[] = [
+    {
+      title: 'My Greetings',
+      description: 'Greetings from me!',
+      inToolbar: true,
+      model: {
+        elements: [
+          {
+            name: 'Greetings',
+            type: 'GreetingsShape'
+          }
+        ],
+        relations: []
+      }
+    }
+  ];
+
+
+  myCustomFactories: ICanvasShapeFactory[] = [
+    {
+      type: 'GreetingsShape',
+      factory: new GenericCanvasFactory<GreetingsComponent>(GreetingsComponent)
+    }
+  ];
+}
+```
+
+```html
+<!-- app.component.html -->
+
+<sem-semantic-canvas
+  [elementShapes]="myCustomShapes"
+  [modelPackages]="myCustomModelPackage"
+  [shapeFactories]="myCustomFactories"
+>
+</sem-semantic-canvas>
+
+```
+
+## 3.2. Example: Keep your own components semantified
 tbd
 
 ## 4. Example: Use your own components as shapes on the canvas
