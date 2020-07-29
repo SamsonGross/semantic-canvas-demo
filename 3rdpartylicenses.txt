@@ -90,7 +90,7 @@ MIT
 
 @semantic-canvas/semantic-canvas-core
 MIT
-Copyright (c) 2013-2017 ZURB, inc.
+Copyright (c) 2020 Samson Groß
 
 MIT License
 
