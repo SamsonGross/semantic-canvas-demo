@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generiert durch Microsoft Visio, SVG Export StickyNoteBlue.svg Zeichenblatt-1 -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events"
+		xmlns:v="http://schemas.microsoft.com/visio/2003/SVGExtensions/" width="0.92629in" height="0.6507in"
+		viewBox="0 0 66.6929 46.8504" xml:space="preserve" color-interpolation-filters="sRGB" class="st5">
+	<v:documentProperties v:langID="1031" v:metric="true" v:viewMarkup="false"/>
+
+	<style type="text/css">
+	<![CDATA[
+		.st1 {visibility:visible}
+		.st2 {fill:#000000;fill-opacity:0.4;filter:url(#filter_2.6666667461395);stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:0.4}
+		.st3 {fill:#a8a2f4;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-width:2}
+		.st4 {fill:#7c73ee;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-width:2}
+		.st5 {fill:none;fill-rule:evenodd;font-size:12px;overflow:visible;stroke-linecap:square;stroke-miterlimit:3}
+	]]>
+	</style>
+
+	<defs id="Filters">
+		<filter id="filter_2.6666667461395">
+			<feGaussianBlur stdDeviation="2.6666667461395"/>
+		</filter>
+	</defs>
+	<g v:mID="0" v:index="1" v:groupContext="foregroundPage">
+		<title>Zeichenblatt-1</title>
+		<v:pageProperties v:drawingScale="0.0393701" v:pageScale="0.0393701" v:drawingUnits="24" v:shadowOffsetX="8.50394"
+				v:shadowOffsetY="-8.50394"/>
+		<g id="group7-1" transform="translate(2.87868,-7.12132)" v:mID="7" v:groupContext="group">
+			<v:userDefs>
+				<v:ud v:nameU="ControlDistFromCorner" v:prompt="" v:val="VT0(0.33406619583616):24"/>
+				<v:ud v:nameU="AngToControl" v:prompt="" v:val="VT0(0.78539816339745):32"/>
+				<v:ud v:nameU="XFoldLength" v:prompt="" v:val="VT0(0.23622047244094):24"/>
+				<v:ud v:nameU="YFoldLength" v:prompt="" v:val="VT0(0.23622047244094):24"/>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="ControlDistFromCorner" v:prompt="" v:val="VT0(0.18782457325191):1"/>
+				<v:ud v:nameU="AngToControl" v:prompt="" v:val="VT0(0.99442106974302):32"/>
+				<v:ud v:nameU="XFoldLength" v:prompt="" v:val="VT0(0.11200787629105):1"/>
+				<v:ud v:nameU="YFoldLength" v:prompt="" v:val="VT0(0.17231979592866):1"/>
+			</v:userDefs>
+			<title>Gefaltete Ecke.7</title>
+			<g id="shape7-2" v:mID="7" v:groupContext="groupContent">
+				<g id="shadow7-3" v:groupContext="shadow" v:shadowOffsetX="2.12132" v:shadowOffsetY="-2.12132" v:shadowType="1"
+						transform="matrix(1,0,0,1,2.12132,2.12132)" class="st1">
+					<path d="M0 46.85 L48.63 46.85 L56.69 34.44 L56.69 10 L0 10 L0 46.85 Z" class="st2"/>
+				</g>
+				<path d="M0 46.85 L48.63 46.85 L56.69 34.44 L56.69 10 L0 10 L0 46.85 Z" class="st3"/>
+			</g>
+			<g id="shape8-7" v:mID="8" v:groupContext="shape" transform="translate(45.3543,0)">
+				<title>Tabelle.8</title>
+				<v:userDefs>
+					<v:ud v:nameU="ControlX" v:prompt="" v:val="VT0(0.94488188976378):24"/>
+					<v:ud v:nameU="ControlY" v:prompt="" v:val="VT0(0.23622047244094):24"/>
+					<v:ud v:nameU="XFoldLength" v:prompt="" v:val="VT0(0.23622047244094):24"/>
+					<v:ud v:nameU="YFoldLength" v:prompt="" v:val="VT0(0.23622047244094):24"/>
+					<v:ud v:nameU="FillForegnd" v:prompt="" v:val="VT5(1)"/>
+					<v:ud v:nameU="ControlX" v:prompt="" v:val="VT0(0.62992124278103):1"/>
+					<v:ud v:nameU="ControlY" v:prompt="" v:val="VT0(0.10236221011969):1"/>
+					<v:ud v:nameU="XFoldLength" v:prompt="" v:val="VT0(0.11200787629105):1"/>
+					<v:ud v:nameU="YFoldLength" v:prompt="" v:val="VT0(0.17231979592866):1"/>
+					<v:ud v:nameU="FillForegnd" v:prompt="" v:val="VT5(#a8a2f4)"/>
+				</v:userDefs>
+				<g id="shadow8-8" v:groupContext="shadow" v:shadowOffsetX="2.12132" v:shadowOffsetY="-2.12132" v:shadowType="1"
+						transform="matrix(1,0,0,1,2.12132,2.12132)" class="st1">
+					<path d="M3.27 46.85 L11.34 34.44 L0 39.48 L3.27 46.85 Z" class="st2"/>
+				</g>
+				<path d="M3.27 46.85 L11.34 34.44 L0 39.48 L3.27 46.85 Z" class="st4"/>
+			</g>
+		</g>
+	</g>
+</svg>
