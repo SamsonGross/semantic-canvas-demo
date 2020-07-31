@@ -35,11 +35,11 @@ Navigate to angular.json
 ### 4. Import module
 
 Navigate to app.module.ts
-```
+```typescript
 import { SemanticCanvasCoreModule } from '@semantic-canvas/semantic-canvas-core';
 ```
 
-```
+```typescript
 imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -58,7 +58,7 @@ imports: [
 First, you must define your custom shape to use it as the type for your custom element.
 Once defined, this shape can be used as the type of different elements.
 
-```
+```typescript
 // e.g. app.component.ts
 
 import { ICanvasElementShape } from 'libs/semantic-canvas-core/src/lib/canvas/domain/ICanvasElementShape';
@@ -69,7 +69,7 @@ export class AppComponent {
 
   [...] 
 
-  myCustomShape: ICanvasElementShape = {
+  myCustomShapes: ICanvasElementShape[] = [{
     name: 'MyCustomShape',                       // name of the shape
     width: 200,                                  // default width of the shape (DEFAULT: 160)
     height: 150,                                 // default height of the shape (DEFAULT: 100)
@@ -77,7 +77,7 @@ export class AppComponent {
     borderRadius: 5,                             // radius of the border (DEFAULT: 0)
     borderColor: 'gray',                         // color of the border (DEFAULT: black)
     borderWidth: 6,                              // width of the border (DEFAULT: 1)
-  };
+  }];
 
   [...]
 ```
@@ -85,7 +85,7 @@ export class AppComponent {
 Second, define your custom model package including all your elements (and relations).
 All defined elements can be used on the canvas.
 
-```
+```typescript
 // e.g. app.component.ts
 
 import { IModelPackage } from 'libs/semantic-canvas-core/src/lib/library/domain/IModelPackage';
@@ -96,7 +96,7 @@ export class AppComponent {
 
   [...] 
   
-  myCustomModelPackage: IModelPackage = {
+  myCustomModelPackages: IModelPackage[] = [{
     title: 'myCustomElement',                    // title of the model package
     description:                                 // description of the model package
       'This is my first custom model package!',
@@ -110,7 +110,7 @@ export class AppComponent {
       ],
       relations: []                              // list of custom relations
     }
-  };
+  }];
 
   [...] 
 ```
@@ -121,11 +121,13 @@ Third, hand over the created forms and packages to the canvas
 // e.g. app.component.html
 
 <sem-semantic-canvas 
-  [elementShapes]="[myCustomShape]"
-  [modelPackages]="[myCustomModelPackage]"
+  [elementShapes]="myCustomShapes"
+  [modelPackages]="myCustomModelPackages"
 >
 </sem-semantic-canvas>
 ```
+
+The code can be found here: https://github.com/SamsonGross/semantic-canvas-demo 
 
 ## 3.1. Example: Use your own components as shapes on the canvas
 Use CanvasFactories to bring your own components on the canvas
@@ -248,7 +250,7 @@ export class AppComponent {
     }
   ];
 
-  myCustomModelPackage: IModelPackage[] = [
+  myCustomModelPackages: IModelPackage[] = [
     {
       title: 'My Greetings',
       description: 'Greetings from me!',
@@ -280,18 +282,224 @@ export class AppComponent {
 
 <sem-semantic-canvas
   [elementShapes]="myCustomShapes"
-  [modelPackages]="myCustomModelPackage"
+  [modelPackages]="myCustomModelPackages"
   [shapeFactories]="myCustomFactories"
 >
 </sem-semantic-canvas>
 
 ```
 
-## 3.2. Example: Keep your own components semantified
-tbd
 
-## 4. Example: Use your own components as shapes on the canvas
-tbd
+## 3.2. Example: #StaySemantified
+You should always use domain-model-attributes in your component to stay semantified
+
+```typescript
+// greetings.component.ts
+
+import { CanvasComponent, AttributeFactory, EAttributeType } from '@semantic-canvas/semantic-canvas-core';
+import { ModelAttribute } from '@semantic-canvas/semantic-canvas-core/lib/attributes/domain/ModelAttribute';
+
+@Component({
+  selector: 'app-greetings',
+  templateUrl: './greetings.component.html',
+  styleUrls: ['./greetings.component.scss']
+})
+export class GreetingsComponent extends CanvasComponent implements OnInit {
+  nameAttribute: ModelAttribute;        // change your string value to ModelAttribute
+
+  constructor() {
+    super()
+  }
+
+  ngOnInit(): void {
+      this.checkNameAttribute();      // make sure that your component owns the name-attribute
+  }
+
+  greet() {
+    alert('Hello ' + this.nameAttribute.value + '!');
+  }
+
+  private checkNameAttribute() {
+    // Check if there is a text attributet
+    for (const attribute of this.canvasElement.representedDomainElement.attributes) {
+      if (attribute.name === 'Name') {
+        this.nameAttribute = attribute;
+      }
+    }
+
+    // if there is no text attribute, create a new one
+    if (!this.nameAttribute) {
+      this.nameAttribute = AttributeFactory.create(EAttributeType.Text);
+      this.nameAttribute.name = 'Name';
+      this.canvasElement.representedDomainElement.addAttribute(this.nameAttribute);
+    }
+  }
+}
+```
+
+```html
+<!-- greetings.component.html -->
+
+<div>
+  <label>Who would you like to greet?</label>
+  <input type="text" [(ngModel)]="nameAttribute.value" placeholder="Enter name..">
+  <button (click)="greet()">Greet</button>
+</div>
+
+```
+
+
+## 4. Example: Use predefined shape libraries
+
+### 1. Install StickyNotes with npm:
+
+```
+npm install @semantic-canvas/sticky-notes
+```
+
+### 2. Add library assets to your project
+
+Navigate to angular.json
+
+```json
+"assets": [
+  "src/favicon.ico",
+  "src/assets",
+  {
+    "glob": "**/*",
+    "input": "./node_modules/@semantic-canvas/sticky-notes/assets",
+    "output": "./assets/"
+  }
+]
+```
+
+### 3. Import module
+
+Navigate to app.module.ts
+
+```typescript
+import { StickyNotesModule } from '@semantic-canvas/sticky-notes';
+
+imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    SemanticCanvasCoreModule,
+    StickyNotesModule
+],
+```
+
+### 4. Define StickyNote shapes
+
+```typescript
+// app.component.ts
+import { ICanvasElementShape } from '@semantic-canvas/semantic-canvas-core/lib/canvas/domain/ICanvasElementShape';
+
+myCustomShapes: ICanvasElementShape[] = [
+    {
+      name: 'StickyNoteYellow',
+      width: 170,
+      height: 70,
+      containerShadow: false,
+      iconUrl: 'assets/stickynotes/StickyNoteYellow.svg'
+    }, {
+      name: 'StickyNoteBlue',
+      width: 170,
+      height: 70,
+      containerShadow: false,
+      iconUrl: 'assets/stickynotes/StickyNoteBlue.svg'
+    }, {
+      name: 'StickyNoteGreen',
+      width: 170,
+      height: 70,
+      containerShadow: false,
+      iconUrl: 'assets/stickynotes/StickyNoteGreen.svg'
+    }, {
+      name: 'StickyNoteRed',
+      width: 170,
+      height: 70,
+      containerShadow: false,
+      iconUrl: 'assets/stickynotes/StickyNoteRed.svg'
+    }
+  ];
+```
+
+### 5. Define StickyNote model package
+
+```typescript
+// app.component.ts
+import { IModelPackage } from '@semantic-canvas/semantic-canvas-core/lib/library/domain/IModelPackage';
+
+ myCustomModelPackage: IModelPackage[] = [
+    {
+      title: 'Sticky Notes',
+      description: 'StickyNotes to use on the canvas',
+      inToolbar: true,
+      model: {
+        elements: [
+          {
+            type: 'StickyNoteYellow',
+            name: 'Yellow Sticky Note'
+          },
+          {
+            type: 'StickyNoteRed',
+            name: 'Red Sticky Note'
+          },
+          {
+            type: 'StickyNoteBlue',
+            name: 'Blue Sticky Note'
+          },
+          {
+            type: 'StickyNoteGreen',
+            name: 'Green Sticky Note'
+          }
+        ],
+        relations: [
+          // none yet
+        ]
+      }
+    }
+  ];
+```
+
+### 6. Define StickyNote ShapeFactories
+
+```typescript
+// app.component.ts
+import { GenericCanvasFactory } from '@semantic-canvas/semantic-canvas-core';
+import { StickyNoteYellowComponent, StickyNoteRedComponent, StickyNoteGreenComponent, StickyNoteBlueComponent } from '@semantic-canvas/sticky-notes';
+
+myCustomFactories: ICanvasShapeFactory[] = [
+     {
+      type: 'StickyNoteYellow',
+      factory: new GenericCanvasFactory<StickyNoteYellowComponent>(StickyNoteYellowComponent)
+    },
+    {
+      type: 'StickyNoteRed',
+      factory: new GenericCanvasFactory<StickyNoteRedComponent>(StickyNoteRedComponent)
+    },
+    {
+      type: 'StickyNoteGreen',
+      factory: new GenericCanvasFactory<StickyNoteGreenComponent>(StickyNoteGreenComponent)
+    },
+    {
+      type: 'StickyNoteBlue',
+      factory: new GenericCanvasFactory<StickyNoteBlueComponent>(StickyNoteBlueComponent)
+    }
+  ];
+```
+
+### 7. Add canvas parameter
+
+```html
+<!-- app.component.html-->
+
+<sem-semantic-canvas
+  [elementShapes]="myCustomShapes"
+  [modelPackages]="myCustomModelPackage"
+  [shapeFactories]="myCustomFactories"
+>
+</sem-semantic-canvas>
+```
 
 ## Run
 
@@ -300,3 +508,4 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+

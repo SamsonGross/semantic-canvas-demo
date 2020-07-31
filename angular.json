@@ -30,6 +30,11 @@
                 "glob": "**/*",
                 "input": "./node_modules/@semantic-canvas/semantic-canvas-core/lib/assets",
                 "output": "./assets/"
+              },
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@semantic-canvas/sticky-notes/assets",
+                "output": "./assets/"
               }
             ],
             "styles": [
