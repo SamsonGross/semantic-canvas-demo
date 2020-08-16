@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
 import { GreetingsComponent } from './greetings/greetings.component';
-import { GenericCanvasFactory } from '@semantic-canvas/semantic-canvas-core';
-import { ICanvasElementShape } from '@semantic-canvas/semantic-canvas-core/lib/canvas/domain/ICanvasElementShape';
-import { IModelPackage } from '@semantic-canvas/semantic-canvas-core/lib/library/domain/IModelPackage';
-import { ICanvasShapeFactory } from '@semantic-canvas/semantic-canvas-core/lib/canvas/domain/ICanvasShapeFactory';
+import { GenericCanvasFactory, ICanvasElementShape, IModelPackage, ICanvasShapeFactory } from '@semantic-canvas/semantic-canvas-core';
 import { StickyNoteYellowComponent, StickyNoteRedComponent, StickyNoteGreenComponent, StickyNoteBlueComponent } from '@semantic-canvas/sticky-notes';
 
 @Component({

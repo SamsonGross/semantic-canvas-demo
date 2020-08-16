@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CanvasComponent, AttributeFactory, EAttributeType } from '@semantic-canvas/semantic-canvas-core';
-import { ModelAttribute } from '@semantic-canvas/semantic-canvas-core/lib/attributes/domain/ModelAttribute';
+import { CanvasComponent, AttributeFactory, EAttributeType, ModelAttribute } from '@semantic-canvas/semantic-canvas-core';
 
 @Component({
   selector: 'app-greetings',
