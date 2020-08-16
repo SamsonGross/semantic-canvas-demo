@@ -37,9 +37,7 @@ Navigate to angular.json
 Navigate to app.module.ts
 ```typescript
 import { SemanticCanvasCoreModule } from '@semantic-canvas/semantic-canvas-core';
-```
 
-```typescript
 imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -61,7 +59,7 @@ Once defined, this shape can be used as the type of different elements.
 ```typescript
 // e.g. app.component.ts
 
-import { ICanvasElementShape } from 'libs/semantic-canvas-core/src/lib/canvas/domain/ICanvasElementShape';
+import { ICanvasElementShape } from '@semantic-canvas/semantic-canvas-core';
 
 [...]
 
@@ -88,7 +86,7 @@ All defined elements can be used on the canvas.
 ```typescript
 // e.g. app.component.ts
 
-import { IModelPackage } from 'libs/semantic-canvas-core/src/lib/library/domain/IModelPackage';
+import { IModelPackage } from '@semantic-canvas/semantic-canvas-core';
 
 [...]
 
@@ -232,10 +230,7 @@ imports: [
 ```typescript
 // app.component.ts
 
-import { GenericCanvasFactory } from '@semantic-canvas/semantic-canvas-core';
-import { ICanvasElementShape } from '@semantic-canvas/semantic-canvas-core/lib/canvas/domain/ICanvasElementShape';
-import { IModelPackage } from '@semantic-canvas/semantic-canvas-core/lib/library/domain/IModelPackage';
-import { ICanvasShapeFactory } from '@semantic-canvas/semantic-canvas-core/lib/canvas/domain/ICanvasShapeFactory';
+import { GenericCanvasFactory, ICanvasElementShape, IModelPackage, ICanvasShapeFactory } from '@semantic-canvas/semantic-canvas-core';
 
 @Component({
   selector: 'app-root',
@@ -296,8 +291,7 @@ You should always use domain-model-attributes in your component to stay semantif
 ```typescript
 // greetings.component.ts
 
-import { CanvasComponent, AttributeFactory, EAttributeType } from '@semantic-canvas/semantic-canvas-core';
-import { ModelAttribute } from '@semantic-canvas/semantic-canvas-core/lib/attributes/domain/ModelAttribute';
+import { CanvasComponent, AttributeFactory, EAttributeType, ModelAttribute } from '@semantic-canvas/semantic-canvas-core';
 
 @Component({
   selector: 'app-greetings',
@@ -392,7 +386,7 @@ imports: [
 
 ```typescript
 // app.component.ts
-import { ICanvasElementShape } from '@semantic-canvas/semantic-canvas-core/lib/canvas/domain/ICanvasElementShape';
+import { ICanvasElementShape } from '@semantic-canvas/semantic-canvas-core';
 
 myCustomShapes: ICanvasElementShape[] = [
     {
@@ -427,7 +421,7 @@ myCustomShapes: ICanvasElementShape[] = [
 
 ```typescript
 // app.component.ts
-import { IModelPackage } from '@semantic-canvas/semantic-canvas-core/lib/library/domain/IModelPackage';
+import { IModelPackage } from '@semantic-canvas/semantic-canvas-core';
 
  myCustomModelPackage: IModelPackage[] = [
     {
